@@ -7,11 +7,12 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "dtype")
 @Getter @Setter
 public abstract class Item {
     @Id
     @GeneratedValue
-    @Column(name = "order_item_id")
+    @Column(name = "item_id")
     private Long id;
 
     private String name;
