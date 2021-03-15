@@ -9,6 +9,7 @@ import javax.persistence.*;
 import static javax.persistence.FetchType.*;
 
 @Entity
+@Table(name = "order_item")
 @Getter @Setter
 public class OrderItem {
 
@@ -27,4 +28,6 @@ public class OrderItem {
     private  int orderPrice; //주문가격
     private int count;   //주문 수량
 
+    public void add(OrderItem orderItem) {
+    }
 }
