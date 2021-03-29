@@ -13,7 +13,6 @@ import static javax.persistence.FetchType.*;
 @Entity
 @Table(name = "order_item")
 @Getter @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderItem {
 
     @Id @GeneratedValue
@@ -48,7 +47,7 @@ public class OrderItem {
     public void cancel() {
         getItem().addStock(count);
     }
-    //조회로직
+    //조회로직 주문상품 전체 가격 조회
     public int getTotalPrice() {
         return getOrderPrice()*getCount();
     }

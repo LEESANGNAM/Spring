@@ -16,7 +16,6 @@ import static javax.persistence.FetchType.*;
 @Entity
 @Table( name = "orders")
 @Getter @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
     @Id @GeneratedValue
     @Column( name="order_id")
@@ -32,9 +31,10 @@ public class Order {
 
     @OneToOne(fetch = LAZY, cascade = CascadeType.ALL) //cascade : order를 persist 하면 delivery 모두 같이한다.
     @JoinColumn(name = "delivery_id")
-    private  Delivery delivery;
+    private  Delivery delivery; //배송정보
 
-    private LocalDateTime orderDate;
+    private LocalDateTime orderDate; // 주문시간
+
     @Enumerated(EnumType.STRING)
     private OrderStatus status; //주문상태 [order,cancel
 
@@ -45,7 +45,7 @@ public class Order {
     }
 
     public void addOrderItem(OrderItem orderItem){
-        orderItem.add(orderItem);
+        orderItems.add(orderItem);
         orderItem.setOrder(this);
     }
 
@@ -54,7 +54,7 @@ public class Order {
         delivery.setOrder(this);
     }
     //==생성 메서드 ==//
-    public static Order createOrder(Member member, Delivery delivery, OrderItem ... orderItems){
+    public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems){
         Order order = new Order();
         order.setMember(member);
         order.setDelivery(delivery);
