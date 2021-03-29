@@ -36,7 +36,7 @@ public class OrderRepository {
         //주문상태검색
         if (orderSearch.getOrderStatus() != null){
             if(isFirstCondition){
-                jpql += "where";
+                jpql += " where";
                 isFirstCondition = false;
             }else{
                 jpql +=" and";
