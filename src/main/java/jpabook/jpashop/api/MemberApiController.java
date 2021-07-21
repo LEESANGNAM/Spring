@@ -36,12 +36,12 @@ public class MemberApiController {
             @PathVariable("id") Long id,
             @RequestBody @Valid UpdateMemberRequest request){
 
-        memberService.update(id,request.getName());
-        Member findMember = memberService.findOne(id);
+        memberService.update(id,request.getName()); //로직의 분리를 위해 쿼리와 트랜잭션을 끝내고 다시 쿼리를 날린다.
+        Member findMember = memberService.findOne(id); // 유지보수에 용이하다
         return new UpdateMemberResponse(findMember.getId(), findMember.getName());
     }
 
-    @Data
+    @Data //넘기거나 넘겨받는값을 가진 클래스
     static class UpdateMemberRequest{
         private String name;
     }
