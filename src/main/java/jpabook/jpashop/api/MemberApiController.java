@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController //responsbody 데이터자체를 json으로 보내자.
 @RequiredArgsConstructor
@@ -17,7 +19,34 @@ public class MemberApiController {
     private final MemberService memberService;
 
     @GetMapping("/api/v1/members")
+    public List<Member> memberV1(){
+        return  memberService.findMembers();
+    }
 
+    @GetMapping("/api/v2/members")
+    public Result memberV2(){
+        List<Member> findmembers = memberService.findMembers();
+        List<MemberDto> collect = findmembers.stream()
+                .map(m -> new MemberDto(m.getName()))
+                .collect(Collectors.toList());
+
+        return new Result(collect);
+        //절대 엔티티를 받거나 노출하지말고 필요한 데이터로 이루어진 dto를 만들어라!.
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class Result<T>{
+        private  T data;
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class MemberDto{
+        private String name;
+
+    }
+    
     @PostMapping("/api/v1/members")
     public CreateMemberResponse saveMemberV1(@RequestBody @Valid Member member){
         Long id = memberService.join(member);
