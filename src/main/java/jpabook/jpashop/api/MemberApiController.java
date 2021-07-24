@@ -29,7 +29,6 @@ public class MemberApiController {
         List<MemberDto> collect = findmembers.stream()
                 .map(m -> new MemberDto(m.getName()))
                 .collect(Collectors.toList());
-
         return new Result(collect);
         //절대 엔티티를 받거나 노출하지말고 필요한 데이터로 이루어진 dto를 만들어라!.
     }
