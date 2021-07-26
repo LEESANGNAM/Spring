@@ -27,6 +27,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-devtools'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5'
 
 	compile group: 'oracle', name: 'ojdbc6', version: '11.2.0.3'
 
