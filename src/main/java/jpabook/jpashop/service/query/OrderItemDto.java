@@ -4,7 +4,7 @@ import jpabook.jpashop.domain.OrderItem;
 import lombok.Getter;
 
 @Getter
-class OrderItemDto {
+public class OrderItemDto {
     private String itemName;
     private int orderPrice;
     private int count;
@@ -16,6 +16,4 @@ class OrderItemDto {
         count = orderItem.getCount();
     }
 
-    public OrderItemDto(OrderItem orderItem) {
-    }
 }
