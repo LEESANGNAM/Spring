@@ -2,15 +2,16 @@ package jpabook.jpashop.service.query;
 
 import jpabook.jpashop.domain.Address;
 import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderItem;
 import jpabook.jpashop.domain.OrderStatus;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 @Getter
-class OrderDto {
+public class OrderDto {
     private Long orderId;
     private String name;
     private LocalDateTime orderDate;
